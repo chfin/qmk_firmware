@@ -4,13 +4,15 @@
 #define _QWERTY 0
 #define _LOWER 1
 #define _RAISE 2
-#define _ADJUST 3
+#define _WINMAN 3
+#define _WINMANRAISE 4
 
 enum custom_keycodes {
   QWERTY = SAFE_RANGE,
   LOWER,
   RAISE,
-  ADJUST,
+  WINMAN,
+  WINMANRAISE,
 };
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
@@ -19,7 +21,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────────────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_ESC,              KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   //├────────────────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
-     LT(_ADJUST, KC_TAB), KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
+     LT(_WINMAN, KC_TAB), KC_Q,    KC_W,    KC_E,    KC_R,    KC_T,                               KC_Y,    KC_U,    KC_I,    KC_O,    KC_P,    KC_BSLS,
   //├────────────────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT,             KC_A,    KC_S,    KC_D,    KC_F,    KC_G,                               KC_H,    KC_J,    KC_K,    KC_L,    KC_SCLN, KC_QUOT,
   //├────────────────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -57,7 +59,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   ),
 
-  [_ADJUST] = LAYOUT(
+  [_WINMAN] = LAYOUT(
   //┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐                       ┌───────────┬───────────┬──────────────┬─────────────┬──────────────┬──────────────┐
      RGUI(KC_Q), RGUI(KC_1), RGUI(KC_2), RGUI(KC_3), RGUI(KC_4), RGUI(KC_5),                         RGUI(KC_6), RGUI(KC_7), RGUI(KC_8),    RGUI(KC_9),   RGUI(KC_0),    KC_NO,
   //├───────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                       ├───────────┼───────────┼──────────────┼─────────────┼──────────────┼──────────────┤
@@ -67,8 +69,22 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //├───────────┼───────────┼───────────┼───────────┼───────────┼───────────┼─── ─────┐   ┌─────────┼───────────┼───────────┼──────────────┼─────────────┼──────────────┼──────────────┤
      KC_LCTL,    RGUI(KC_Z), RGUI(KC_X), RGUI(KC_C), RGUI(KC_V), RGUI(KC_B),  _______,     _______,  RGUI(KC_N), RGUI(KC_M), RGUI(KC_COMM), RGUI(KC_DOT), RGUI(KC_SLSH), KC_RSFT,
   //└───────────┴───────────┴───────────┴─────┬─────┴─────┬─────┴─────┬─────┴────┬────┘   └───┬─────┴─────┬─────┴─────┬─────┴────┬─────────┴─────────────┴──────────────┴──────────────┘
-                                               _______,    _______,    RGUI(KC_ENT),           RGUI(KC_ENT), _______,  _______
+                                               _______,    _______,    RGUI(KC_ENT),          RGUI(KC_ENT),WINMANRAISE,  _______
                                            // └───────────┴───────────┴────────────┘          └───────────┴───────────┴──────────┘
+  ),
+
+  [_WINMANRAISE] = LAYOUT(
+  //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
+     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
+     KC_LSFT, _______, _______, _______, _______, _______,                            _______, _______, RGUI(KC_UP),   _______, _______, _______,
+  //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
+     KC_LCTL, _______, _______, _______, _______, _______, _______,         _______,KC_PSCREEN,RGUI(KC_LEFT), RGUI(KC_DOWN), RGUI(KC_RIGHT),_______,  _______,
+  //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
+                                    _______, _______, _______,                   _______, _______, _______
+                                // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
   )
 };
 
@@ -83,28 +99,36 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
     case LOWER:
       if (record->event.pressed) {
         layer_on(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _WINMAN);
       } else {
         layer_off(_LOWER);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _WINMAN);
       }
       return false;
       break;
     case RAISE:
       if (record->event.pressed) {
         layer_on(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _WINMAN);
       } else {
         layer_off(_RAISE);
-        update_tri_layer(_LOWER, _RAISE, _ADJUST);
+        update_tri_layer(_LOWER, _RAISE, _WINMAN);
       }
       return false;
       break;
-    case ADJUST:
+    case WINMAN:
       if (record->event.pressed) {
-        layer_on(_ADJUST);
+        layer_on(_WINMAN);
       } else {
-        layer_off(_ADJUST);
+        layer_off(_WINMAN);
+      }
+      return false;
+      break;
+    case WINMANRAISE:
+      if (record->event.pressed) {
+        layer_on(_WINMANRAISE);
+      } else {
+        layer_off(_WINMANRAISE);
       }
       return false;
       break;
@@ -144,7 +168,7 @@ layer_state_t layer_state_set_user(layer_state_t state) {
     case _LOWER:
       //rgblight_setrgb (0x00,  0x00, 0x00);
       break;
-    case _ADJUST: //#1a5fb4
+    case _WINMAN: //#1a5fb4
       rgblight_setrgb_range (0x1A,  0x5F, 0xB4, 0, 12);
       break;
     default: //  for any other layers, or the default layer
