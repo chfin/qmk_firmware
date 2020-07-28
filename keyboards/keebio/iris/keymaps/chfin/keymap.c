@@ -160,20 +160,40 @@ void encoder_update_user(uint8_t index, bool clockwise) {
   }
 }
 
+/* const rgblight_segment_t PROGMEM my_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 12, RGB_GREEN}); */
+/* const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 12, RGB_PURPLE}); */
+/* const rgblight_segment_t PROGMEM my_winman_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 12, RGB_BLUE}); */
+
+/* const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(my_raise_layer, my_lower_layer, my_winman_layer); */
+
+/* void keyboard_post_init_user(void) { */
+/*   rgblight_layers = my_rgb_layers; */
+/* } */
+
+/* #define LAYER_IS_ON(layer_state, layer_num) ((layer_state & (1 << layer_num)) > 0) */
+
 layer_state_t layer_state_set_user(layer_state_t state) {
     switch (get_highest_layer(state)) {
     case _RAISE:
-      //rgblight_setrgb (0x00,  0x00, 0x00);
+      rgblight_sethsv (HSV_GREEN);
       break;
     case _LOWER:
-      //rgblight_setrgb (0x00,  0x00, 0x00);
+      rgblight_sethsv (7, 255, 255); // orange
       break;
-    case _WINMAN: //#1a5fb4
-      rgblight_setrgb_range (0x1A,  0x5F, 0xB4, 0, 12);
+    case _WINMAN:
+    case _WINMANRAISE:
+      //#1a5fb4
+      //rgblight_setrgb_range (0x1A,  0x5F, 0xB4, 0, 12);
+      rgblight_sethsv(HSV_BLUE);
       break;
     default: //  for any other layers, or the default layer
-      rgblight_setrgb_range (0x00,  0x00, 0x00, 0, 12);
+      //rgblight_setrgb_range (0x00,  0x00, 0x00, 0, 12);
+      rgblight_sethsv(0x00, 0x00, 0x00);
       break;
     }
+  /* rgblight_set_layer_state(0, LAYER_IS_ON(state, _RAISE)); */
+  /* rgblight_set_layer_state(1, LAYER_IS_ON(state, _LOWER)); */
+  /* rgblight_set_layer_state(2, LAYER_IS_ON(state, _WINMAN)); */
+
   return state;
 }
