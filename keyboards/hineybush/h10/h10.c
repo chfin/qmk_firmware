@@ -14,16 +14,21 @@
  * along with this program.  If not, see <http://www.gnu.org/licenses/>.
  */
 
-#include "h10.h"
+#include "quantum.h"
 
 // Optional override functions below.
 // You can leave any or all of these undefined.
 // These are only required if you want to perform custom actions.
 
-/*
-bool led_update_kb(led_t led_state) {
-    // placeholder for LED indicator added to next revision
-
-    return led_update_user(led_state);
+void matrix_init_kb(void) {
+    // put your keyboard start-up code here
+    // runs once when the firmware starts up
+   	gpio_set_pin_output(F7);
 }
-*/
+
+bool led_update_kb(led_t led_state) {
+    if(led_update_user(led_state)) {
+        gpio_write_pin(F7, !led_state.num_lock);
+    }
+    return true;
+}
