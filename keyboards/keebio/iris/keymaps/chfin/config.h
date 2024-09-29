@@ -20,9 +20,10 @@ along with this program.  If not, see <http://www.gnu.org/licenses/>.
 // #define USE_I2C
 #define EE_HANDS
 
-#undef RGBLED_NUM
+/* #undef RGBLED_NUM */
 #undef RGBLIGHT_ANIMATIONS
-#define RGBLED_NUM 12
+/* #define RGBLED_NUM 12 */
+#define RGBLIGHT_LED_COUNT 12
 #define RGBLIGHT_HUE_STEP 8
 #define RGBLIGHT_SAT_STEP 8
 #define RGBLIGHT_VAL_STEP 8
