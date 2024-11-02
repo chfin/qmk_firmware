@@ -1,14 +1,14 @@
 #include QMK_KEYBOARD_H
 
 
-#define _QWERTY 0
+#define _BASE 0
 #define _LOWER 1
 #define _RAISE 2
 #define _WINMAN 3
 #define _WINMANRAISE 4
 
 enum custom_keycodes {
-  QWERTY = SAFE_RANGE,
+  BASE = SAFE_RANGE,
   LOWER,
   RAISE,
   WINMAN,
@@ -17,7 +17,7 @@ enum custom_keycodes {
 
 const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
-  [_QWERTY] = LAYOUT(
+  [_BASE] = LAYOUT(
   //┌────────────────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_ESC,              KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                               KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_BSPC,
   //├────────────────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
@@ -35,7 +35,7 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                              ┌────────┬────────┬────────┬────────┬────────┬────────┐
      KC_GRV,  KC_EXLM, KC_AT,   KC_HASH, KC_DLR,  KC_PERC,                                KC_CIRC, KC_AMPR, KC_ASTR, KC_LPRN, KC_RPRN, KC_PGUP,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                              ├────────┼────────┼────────┼────────┼────────┼────────┤
-     QK_BOOT,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PGDN,
+     _______,   KC_1,    KC_2,    KC_3,    KC_4,    KC_5,                                   KC_6,    KC_7,    KC_8,    KC_9,    KC_0,    KC_PGDN,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                              ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, KC_NO,   KC_PGUP, KC_UP,   KC_PGDN, KC_LBRC,                                KC_RBRC, RGB_MOD, RGB_HUI, RGB_SAI, RGB_VAI, KC_HOME,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐            ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
@@ -63,11 +63,11 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
   //┌───────────┬───────────┬───────────┬───────────┬───────────┬───────────┐                       ┌───────────┬───────────┬──────────────┬─────────────┬──────────────┬──────────────┐
      RGUI(KC_Q), RGUI(KC_1), RGUI(KC_2), RGUI(KC_3), RGUI(KC_4), RGUI(KC_5),                         RGUI(KC_6), RGUI(KC_7), RGUI(KC_8),    RGUI(KC_9),   RGUI(KC_0),    KC_NO,
   //├───────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                       ├───────────┼───────────┼──────────────┼─────────────┼──────────────┼──────────────┤
-     _______,    RGUI(KC_A), RGUI(KC_W), RGUI(KC_3), RGUI(KC_R), RGUI(KC_T),                         RGUI(KC_Z), RGUI(KC_U), RGUI(KC_I),    RGUI(KC_O),   RGUI(KC_P),    RGUI(KC_BSLS),
+     _______,    RGUI(KC_A), RGUI(KC_W), RGUI(KC_E), RGUI(KC_R), RGUI(KC_T),                         RGUI(KC_Z), RGUI(KC_U), RGUI(KC_I),    RGUI(KC_O),   RGUI(KC_P),    RGUI(KC_BSLS),
   //├───────────┼───────────┼───────────┼───────────┼───────────┼───────────┤                       ├───────────┼───────────┼──────────────┼─────────────┼──────────────┼──────────────┤
      KC_LSFT,    RGUI(KC_A), RGUI(KC_S), RGUI(KC_D), RGUI(KC_F), RGUI(KC_G),                         RGUI(KC_H), RGUI(KC_J), RGUI(KC_K),    RGUI(KC_L),   RGUI(KC_SCLN), RGUI(KC_QUOT),
   //├───────────┼───────────┼───────────┼───────────┼───────────┼───────────┼─── ─────┐   ┌─────────┼───────────┼───────────┼──────────────┼─────────────┼──────────────┼──────────────┤
-     KC_LCTL,    RGUI(KC_Z), RGUI(KC_X), RGUI(KC_C), RGUI(KC_V), RGUI(KC_B),  _______,     _______,  RGUI(KC_N), RGUI(KC_M), RGUI(KC_COMM), RGUI(KC_DOT), RGUI(KC_SLSH), KC_RSFT,
+     KC_LCTL,    RGUI(KC_Z), RGUI(KC_X), RGUI(KC_C), RGUI(KC_V), RGUI(KC_B),  _______,     KC_PSCR,  RGUI(KC_N), RGUI(KC_M), RGUI(KC_COMM), RGUI(KC_DOT), RGUI(KC_SLSH), KC_RSFT,
   //└───────────┴───────────┴───────────┴─────┬─────┴─────┬─────┴─────┬─────┴────┬────┘   └───┬─────┴─────┬─────┴─────┬─────┴────┬─────────┴─────────────┴──────────────┴──────────────┘
                                                _______,    _______,    RGUI(KC_ENT),          RGUI(KC_ENT),WINMANRAISE,  _______
                                            // └───────────┴───────────┴────────────┘          └───────────┴───────────┴──────────┘
@@ -75,13 +75,13 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
   [_WINMANRAISE] = LAYOUT(
   //┌────────┬────────┬────────┬────────┬────────┬────────┐                          ┌────────┬────────┬────────┬────────┬────────┬────────┐
-     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
+     _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, QK_BOOT,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      _______, _______, _______, _______, _______, _______,                            _______, _______, _______, _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┤                          ├────────┼────────┼────────┼────────┼────────┼────────┤
      KC_LSFT, _______, _______, _______, _______, _______,                            _______, _______, RGUI(KC_UP),   _______, _______, _______,
   //├────────┼────────┼────────┼────────┼────────┼────────┼────────┐        ┌────────┼────────┼────────┼────────┼────────┼────────┼────────┤
-     KC_LCTL, _______, _______, _______, _______, _______, _______,         _______,KC_PSCR,RGUI(KC_LEFT), RGUI(KC_DOWN), RGUI(KC_RIGHT),_______,  _______,
+     KC_LCTL, _______, _______, _______, _______, _______, _______,         _______,_______,RGUI(KC_LEFT), RGUI(KC_DOWN), RGUI(KC_RIGHT),_______,  _______,
   //└────────┴────────┴────────┴───┬────┴───┬────┴───┬────┴───┬────┘        └───┬────┴───┬────┴───┬────┴───┬────┴────────┴────────┴────────┘
                                     _______, _______, _______,                   _______, _______, _______
                                 // └────────┴────────┴────────┘                 └────────┴────────┴────────┘
@@ -90,9 +90,9 @@ const uint16_t PROGMEM keymaps[][MATRIX_ROWS][MATRIX_COLS] = {
 
 bool process_record_user(uint16_t keycode, keyrecord_t *record) {
   switch (keycode) {
-    case QWERTY:
+    case BASE:
       if (record->event.pressed) {
-        set_single_persistent_default_layer(_QWERTY);
+        set_single_persistent_default_layer(_BASE);
       }
       return false;
       break;
@@ -137,17 +137,17 @@ bool process_record_user(uint16_t keycode, keyrecord_t *record) {
 }
 
 bool encoder_update_user(uint8_t index, bool clockwise) {
-  // clockwise is reversed
+  /* clockwise = !clockwise; */
   if (index == 0) {
     switch (get_highest_layer(layer_state)) {
-    case _QWERTY:
-      clockwise ? tap_code(KC_VOLD) : tap_code(KC_VOLU);
+    case _BASE:
+      clockwise ? tap_code(KC_VOLU) : tap_code(KC_VOLD);
       break;
     case _LOWER:
-      clockwise ? tap_code(KC_MEDIA_PREV_TRACK) : tap_code(KC_MEDIA_NEXT_TRACK);
+      clockwise ? tap_code(KC_MEDIA_NEXT_TRACK) : tap_code(KC_MEDIA_PREV_TRACK);
       break;
     case _RAISE:
-      clockwise ? tap_code(KC_BRIGHTNESS_DOWN) : tap_code(KC_BRIGHTNESS_UP);
+      clockwise ? tap_code(KC_BRIGHTNESS_UP) : tap_code(KC_BRIGHTNESS_DOWN);
       break;
     }
   }
@@ -161,19 +161,35 @@ bool encoder_update_user(uint8_t index, bool clockwise) {
   return false;
 }
 
+/* const rgblight_segment_t PROGMEM my_base_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 12, RGB_BLACK}); */
 /* const rgblight_segment_t PROGMEM my_raise_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 12, RGB_GREEN}); */
 /* const rgblight_segment_t PROGMEM my_lower_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 12, RGB_PURPLE}); */
 /* const rgblight_segment_t PROGMEM my_winman_layer[] = RGBLIGHT_LAYER_SEGMENTS({0, 12, RGB_BLUE}); */
 
-/* const rgblight_segment_t* const PROGMEM my_rgb_layers[] = RGBLIGHT_LAYERS_LIST(my_raise_layer, my_lower_layer, my_winman_layer); */
+/* const rgblight_segment_t* const PROGMEM my_rgb_layers[] = */
+/*   RGBLIGHT_LAYERS_LIST(my_base_layer, my_raise_layer, my_lower_layer, my_winman_layer); */
 
 /* void keyboard_post_init_user(void) { */
 /*   rgblight_layers = my_rgb_layers; */
 /* } */
 
+/* layer_state_t default_layer_state_set_user(layer_state_t state) { */
+/*     rgblight_set_layer_state(0, layer_state_cmp(state, _BASE)); */
+/*     return state; */
+/* } */
+
+/* layer_state_t layer_state_set_user(layer_state_t state) { */
+/*     rgblight_set_layer_state(1, layer_state_cmp(state, _RAISE)); */
+/*     rgblight_set_layer_state(2, layer_state_cmp(state, _LOWER)); */
+/*     rgblight_set_layer_state(3, layer_state_cmp(state, _WINMAN)); */
+/*     rgblight_set_layer_state(3, layer_state_cmp(state, _WINMANRAISE)); */
+/*     return state; */
+/* } */
+
 /* #define LAYER_IS_ON(layer_state, layer_num) ((layer_state & (1 << layer_num)) > 0) */
 
 layer_state_t layer_state_set_user(layer_state_t state) {
+  rgblight_mode(RGBLIGHT_MODE_STATIC_LIGHT);
     switch (get_highest_layer(state)) {
     case _RAISE:
       rgblight_sethsv (HSV_GREEN);
@@ -183,8 +199,6 @@ layer_state_t layer_state_set_user(layer_state_t state) {
       break;
     case _WINMAN:
     case _WINMANRAISE:
-      //#1a5fb4
-      //rgblight_setrgb_range (0x1A,  0x5F, 0xB4, 0, 12);
       rgblight_sethsv(HSV_BLUE);
       break;
     default: //  for any other layers, or the default layer
